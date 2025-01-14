@@ -10,6 +10,22 @@ const tabsLayout = () => {
             fontSize:40,
             fontWeight:'bold'
         }, headerTitleAlign:'center'}}/>  
+        <Tabs.Screen name="food" options={{title:'Alimentos', headerStyle:{backgroundColor:'black'}, headerTitleStyle:{
+            color:'white',
+            fontSize:40,
+            fontWeight:'bold'
+        }, headerTitleAlign:'center'}}/> 
+        <Tabs.Screen name="cart" options={{title:'Carrito', headerStyle:{backgroundColor:'black'}, headerTitleStyle:{
+            color:'white',
+            fontSize:40,
+            fontWeight:'bold'
+        }, headerTitleAlign:'center'}}/>  
+        <Tabs.Screen name="profile" options={{title:'Mi perfil', headerStyle:{backgroundColor:'black'}, headerTitleStyle:{
+            color:'white',
+            fontSize:40,
+            fontWeight:'bold'
+        }, headerTitleAlign:'center'}}/> 
+        <Tabs.Screen name="screens"  options={{ headerShown:false }}/> 
     </Tabs>
   )
 }
