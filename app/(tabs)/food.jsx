@@ -9,8 +9,9 @@ const food = () => {
             <Text className='font-bold text-2xl ml-5 mt-5'>Bebidas calientes</Text>
             <View className='  bg-black flex rounded-lg mx-2'>
                 <Pressable onPress={() => {
+                    console.log('navegando')
                     router.push({
-                        pathname: "screens/menuDisplay",
+                        pathname: "/menuDisplay",
                         params: {data: 'Hot'}
                     })
                 }}>
@@ -21,7 +22,7 @@ const food = () => {
             <View className='  bg-black flex rounded-lg mx-2'>
                 <Pressable onPress={() => {
                     router.push({
-                        pathname: "screens/menuDisplay",
+                        pathname: "/menuDisplay",
                         params: {data: 'Cold'}
                     })
                 }}>
@@ -32,7 +33,7 @@ const food = () => {
             <View className='  bg-black flex rounded-lg mx-2'>
                 <Pressable onPress={() => {
                     router.push({
-                        pathname: "screens/menuDisplay",
+                        pathname: "/menuDisplay",
                         params: {data: 'Food'}
                     })
                 }}>
@@ -43,7 +44,7 @@ const food = () => {
             <View className='  bg-black flex rounded-lg mx-2'>
                 <Pressable onPress={() => {
                     router.push({
-                        pathname: "screens/menuDisplay",
+                        pathname: "/menuDisplay",
                         params: {data: 'Extras'}
                     })
                 }}>

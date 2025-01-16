@@ -1,8 +1,10 @@
 import { ScrollView, StyleSheet, Text, View, TextInput, Pressable, Modal } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import { router } from 'expo-router'
+import { router, useLocalSearchParams } from 'expo-router'
 
 const signUp = () => {
+  const {signUp} = useLocalSearchParams()
+  console.log(signUp)
   const [Credentials, SetCredentials] = useState({
     username: '',
     email: '',

@@ -25,7 +25,7 @@ const tabsLayout = () => {
             fontSize:40,
             fontWeight:'bold'
         }, headerTitleAlign:'center'}}/> 
-        <Tabs.Screen name="screens"  options={{ headerShown:false }}/> 
+        
     </Tabs>
   )
 }

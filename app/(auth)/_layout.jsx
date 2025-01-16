@@ -10,11 +10,12 @@ const AuthLayout = () => {
             fontSize:40,
             fontWeight:'bold'
         }, headerTitleAlign:'center'}}/> 
-        <Stack.Screen name='signUp' options={{title:'Regístrate', headerStyle:{backgroundColor:'black'}, headerTitleStyle:{
+        <Stack.Screen name='signUp' options={{title:'Regístrate', headerTintColor:'white',headerStyle:{backgroundColor:'black'}, headerTitleStyle:{
             color:'white',
             fontSize:40,
             fontWeight:'bold'
-        }, headerTitleAlign:'center'}}/>   
+        }, headerTitleAlign:'center'}}/> 
+         
         
     </Stack>
   )

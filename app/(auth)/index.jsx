@@ -46,7 +46,7 @@ const index = () => {
             <View className='flex-1 flex-col items-center'>
               <Text className='text-2xl font-bold text-center'> ¿Eres nuevo? Regístrate</Text>
               <Pressable className='bg-black mt-5 rounded-lg w-2/4' onPress={() => {
-                router.navigate("signUp")
+                router.navigate('signUp')
               }}>
                 <Text className='text-xl font-bold text-center text-stone-50 p-3'> Regístrate</Text>
               </Pressable>
