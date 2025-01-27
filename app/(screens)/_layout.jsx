@@ -10,6 +10,11 @@ const screensLayout = () => {
             fontSize:40,
             fontWeight:'bold'
         }, headerTitleAlign:'center'}}/>
+        <Stack.Screen name="[dishDisplay]" options={{title:'Detalles', headerTintColor:'white',headerStyle:{backgroundColor:'black'}, headerTitleStyle:{
+            color:'white',
+            fontSize:40,
+            fontWeight:'bold'
+        }, headerTitleAlign:'center'}}/>
     </Stack>
   )
 }

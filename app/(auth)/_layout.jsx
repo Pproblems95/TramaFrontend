@@ -5,7 +5,7 @@ import { Stack } from 'expo-router'
 const AuthLayout = () => {
   return (
     <Stack>
-        <Stack.Screen name='index' options={{title:'Trama Café', headerStyle:{backgroundColor:'black'}, headerTitleStyle:{
+        <Stack.Screen name='index' options={{title:'Trama Café',headerStyle:{backgroundColor:'black'}, headerTitleStyle:{
             color:'white',
             fontSize:40,
             fontWeight:'bold'

@@ -50,7 +50,9 @@ const home = () => {
                     <View className='flex flex-row items-center h-72 w-full '>
                         <View className='flex flex-row  rounded-lg h-52 w-full  '>
                             {item.movies.map((movie) => {
-                                return(<View
+                                return(
+                                
+                                <View
                                     className={`mx-1 flex-1 w-24 rounded-lg h-full ${movie.id === maxId ? 'border-4' : ''}`}
                                     key={movie.id}
                                   >

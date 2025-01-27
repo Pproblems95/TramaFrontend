@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, Text, View, Image } from 'react-native'
+import { ScrollView, StyleSheet, Text, View, Image, Pressable } from 'react-native'
 import React, { useEffect } from 'react'
 import { useLocalSearchParams, router } from 'expo-router'
 
@@ -94,15 +94,19 @@ const menuDisplay = () => {
             if(item.type === data){
               console.log('imprimiendo ' + item.name)
               return(
-                <View className=' w-28 h-40 bg-black rounded-2xl  mt-5 flex-col ' key={item.id}>
+                <Pressable key={item.id} onPress={() => {router.push({
+                  pathname: toString(item.id),
+                  params: {item: item.name}
+                })}} >
+                <View className=' w-28 h-40 bg-black rounded-2xl  mt-5 flex-col ' >
                   <View className=' justify-center align-items-center h-28 w-11/12'>
                     <Image source={item.photo} className='  h-full w-full rounded-2xl mt-5 mr-5 ml-1'  />
                   </View>
                   <View className=' align-items-center justify-center mt-3 w-full '>
                     <Text className='  text-xl text-center text-white'>{item.name}</Text>
                   </View>
-
                 </View>
+                </Pressable>
               )
             }
           })}
