@@ -89,14 +89,16 @@ const menuDisplay = () => {
         <View className='flex'>
           <Text className='text-center font-bold text-xl pt-3' >Nuestra selección</Text>
         </View>
-        <View className='flex flex-row flex-wrap justify-between mx-1 bg-orange-400'>
+        <View className='flex flex-row flex-wrap justify-between mx-1 '>
           {food.map((item) => {
             if(item.type === data){
               console.log('imprimiendo ' + item.name)
               return(
                 <Pressable key={item.id} onPress={() => {router.push({
                   pathname: toString(item.id),
-                  params: {item: item.name}
+                  params: {item: item.name,
+                  type: item.type,
+                  }
                 })}} >
                 <View className=' w-28 h-40 bg-black rounded-2xl  mt-5 flex-col ' >
                   <View className=' justify-center align-items-center h-28 w-11/12'>
