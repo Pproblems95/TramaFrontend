@@ -1,5 +1,5 @@
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Stack, useLocalSearchParams } from 'expo-router'
 import { MinusIcon, PlusIcon } from '../../assets/icons/icons'
 
@@ -9,21 +9,21 @@ const dishDisplay = () => {
     switch(type){
       case 'Food':
        return(<View className=''>
-        {detailsFood.map((item, index) => {
-          const [key, value] = Object.entries(item)[0]
+        {Object.entries(detailsFood).map(([key, value])  => {
           return(
-          <View className='flex-row justify-between items-center content-center  ' key={index}>
+          <View className='flex-row justify-between items-center content-center mx-1 ' key={key}>
             <View className='flex-1'>
-              <Text>{key}</Text>
+              <Text className='text-center text-xl'>{key}</Text>
             </View>
-            <Pressable className='mt-5 flex-1 mx-5'>
-              <View className={`rounded-full ${!isCombo ? 'bg-black' : 'bg-white'}`} >
-                  <Text className={`text-xl text-center p-3 px-5 ${!isCombo ? 'text-white' : 'text-black'}`} >No</Text>
+            <Pressable className='mt-5 flex-1 mx-5' onPress={() => { console.log(key) 
+              SetDetailsFood({...detailsFood, [key]: false})}}>
+              <View className={`rounded-full ${!detailsFood[key] ? 'bg-black' : 'bg-white'}`} >
+                  <Text className={`text-xl text-center p-3 px-5 ${!detailsFood[key] ? 'text-white' : 'text-black'}`} >No</Text>
                 </View>
               </Pressable>
-              <Pressable className='mt-5 flex-1 mx-5'>
-              <View className={`rounded-full ${isCombo ? 'bg-black' : 'bg-white'}`} >
-                  <Text className={`text-xl text-center p-3 px-5 ${isCombo ? 'text-white' : 'text-black'}`} >Sí</Text>
+              <Pressable className='mt-5 flex-1 mx-5' onPress={() => SetDetailsFood({...detailsFood, [key]: true}) }>
+              <View className={`rounded-full ${detailsFood[key] ? 'bg-black' : 'bg-white'}`} >
+                  <Text className={`text-xl text-center p-3 px-5 ${detailsFood[key] ? 'text-white' : 'text-black'}`} >Sí</Text>
                 </View>
 
               </Pressable>
@@ -35,16 +35,26 @@ const dishDisplay = () => {
   const {item, type} = useLocalSearchParams()
   const [isCombo, setIsCombo] = useState(true)
   const [details, SetDetails] = useState({
-    name:'item',
-    type:'type',
+    name: item,
+    type:type,
+    combo: isCombo,
+    quantity: 1,
   })
-  const [detailsFood, SetDetailsFood] = useState([
-    {cebolla: 'true'},
-    {tomate: 'true'},
-    {lechuga: 'true'},
-    {pepinillos: 'true'},
-  ])
-  console.log(item)
+  // const [detailsFood, SetDetailsFood] = useState([
+  //   {cebolla: 'true'},
+  //   {tomate: 'true'},
+  //   {lechuga: 'true'},
+  //   {pepinillos: 'true'},
+  // ])
+  const [detailsFood, SetDetailsFood] = useState({
+    cebolla: true,
+    tomate: true,
+    lechuga: true,
+    pepinillos: true,
+  })
+  useEffect(() => {
+    console.log(detailsFood)
+  },[detailsFood])
   return (
     <ScrollView className='flex-1 '>
       <Stack.Screen options={{title:item}}/>
@@ -77,19 +87,27 @@ const dishDisplay = () => {
         </View>
 
         <Text className='text-center text-2xl font-bold mt-5'>Cantidad</Text>
-
+        <Text className='text-center text-lg font-bold mt-5'>Nota: {!isCombo ? 'Los pedidos serán sencillos.' : 'Los pedidos serán en combo (papas y té helado).'}</Text>
         <View className='flex '>
           <View className='flex'>
 
             <View className='flex justify-between flex-row mx-5 '>
               <View className='content-center items-center'>
-                <MinusIcon size={42} />
+                <Pressable onPress={() => { if(details.quantity == 1) 
+                  return
+                  SetDetails({...details, quantity: details.quantity - 1})}}> 
+                <MinusIcon size={42}  />
+                </Pressable>
               </View>
               <View className='flex-1 content-center items-center justify-center '>
-                <Text className='text-2xl'>0</Text>
+                <Text className='text-2xl'>{details.quantity}</Text>
               </View>
               <View>
+                <Pressable onPress={() => { if(details.quantity == 10) 
+                  return
+                  SetDetails({...details, quantity: details.quantity + 1})}}>
                 <PlusIcon size={42} />
+                </Pressable>
               </View>
             </View>
           </View>
