@@ -32,21 +32,71 @@ const dishDisplay = () => {
           
         )})}
        </View>
-       <View>
-          <Pressable onPress={ () => {console.log(detailsFood)}
-        // Logica del fetch para pedido de comida aqui  
-        }
-            
-            >
-            <View className='bg-black rounded-xl m-5'>
-              <Text className='text-2xl text-center text-white'>Listo</Text>
-            </View>
-          </Pressable>
-       </View>
+       
        </View> )
        case 'Hot':
-        return(<View className='flex'>
-          {/* Aqui me quede, falta aplicar especificaicones para bebida */}
+       case 'Cold':
+        const translations = {
+          sugar: 'Azúcar (en cucharadas)',
+          brownSugar: 'Azúcar morena (en cucharadas)',
+          marshmallows: 'Bombón',
+          whippedCream: 'Crema batida',
+        }
+        return(<View className='flex '>
+          {Object.entries(detailsDrink).map(([key, value])  => key === 'milkType' || key === 'syrup' || key === 'frappeFlavor' ? (<></>) :
+            (
+            <View className='mt-5' >
+              
+              {key === 'sugar' || key === 'brownSugar' ? (
+                <View>
+                  <Text className='text-center text-lg'>{translations[key]}</Text>
+                
+                <View className='flex-row justify-between items-center content-center mx-5 '>
+                <View >
+                  <Pressable onPress={() =>{
+                    if(detailsDrink[key] == 0) 
+                      return
+                    SetDetailsDrink({...detailsDrink, [key]: detailsDrink[key] - 1})
+                  } }>
+                    <MinusIcon size={42} />
+                  </Pressable>
+                </View>
+                <View>
+                  <Text className='text-center text-2xl'>{value}</Text>
+                </View>
+                <View>
+                  <Pressable onPress={() => {
+                    if(detailsDrink[key] == 10) 
+                      return
+                    SetDetailsDrink({...detailsDrink, [key]: detailsDrink[key] + 1})
+                  }}>
+                    <PlusIcon size={42}  />
+                  </Pressable>
+                </View>
+              </View>
+              </View>) : (
+                <View className='flex-row justify-between items-center content-center mx-1 ' key={key}>
+                <View className='flex-1'>
+                  <Text className='text-center text-xl'>{translations[key]}</Text>
+                </View>
+                <Pressable className='mt-5 flex-1 mx-5' onPress={() => { 
+                  SetDetailsDrink({...detailsDrink, [key]: false})}}>
+                  <View className={`rounded-full ${!detailsDrink[key] ? 'bg-black' : 'bg-white'}`} >
+                      <Text className={`text-xl text-center p-3 px-5 ${!detailsDrink[key] ? 'text-white' : 'text-black'}`} >No</Text>
+                    </View>
+                  </Pressable>
+                  <Pressable className='mt-5 flex-1 mx-5' onPress={() => SetDetailsDrink({...detailsDrink, [key]: true}) }>
+                  <View className={`rounded-full ${detailsDrink[key] ? 'bg-black' : 'bg-white'}`} >
+                      <Text className={`text-xl text-center p-3 px-5 ${detailsDrink[key] ? 'text-white' : 'text-black'}`} >Sí</Text>
+                    </View>
+    
+                  </Pressable>
+              </View>
+              )}
+              
+            </View>
+          )
+          )}
         </View>)
     }
   }
@@ -76,8 +126,9 @@ const dishDisplay = () => {
       case 'Hot':
       case 'Cold':
         const milkType = ['entera', 'deslactosada', 'almendra', 'Sin leche']
+        const syrup = ['sabor vainilla', 'sabor caramelo', 'sabor crema irlandesa', 'natural']
         return(<>
-          <Text className='text-center text-xl'>Tipo de leche</Text>
+          <Text className='text-center text-2xl font-bold'>Tipo de leche</Text>
           <ScrollView horizontal showsHorizontalScrollIndicator={false} className='flex-row'>
              <Pressable className='flex' onPress={() => SetDetailsDrink({...detailsDrink, milkType: 0})}>
                 <View className={`flex-1 rounded-xl bg-black m-2 align-items-center justify-center ${detailsDrink.milkType === 0 ? 'bg-black border border-white' : 'bg-white'} `}>
@@ -100,7 +151,31 @@ const dishDisplay = () => {
                 </View>
               </Pressable>
           </ScrollView>
-          {detailsDrink.milkType !== 3 ? (<Text className='text-center text-xl'>Nota: los pedidos serán con leche {milkType[detailsDrink.milkType]}</Text>) : (<Text className='text-center text-xl'>Nota: los pedidos serán sin leche</Text>)}
+        
+          <Text className='text-center text-2xl font-bold mt-5'>Sabor</Text>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false} className='flex-row'>
+             <Pressable className='flex' onPress={() => SetDetailsDrink({...detailsDrink, syrup: 0})}>
+                <View className={`flex-1 rounded-xl bg-black m-2 align-items-center justify-center ${detailsDrink.syrup === 0 ? 'bg-black border border-white' : 'bg-white'} `}>
+                  <Text className={`text-2xl font-bold text-center p-5 text-black ${detailsDrink.syrup === 0 ? 'text-white' : 'text-black'} `}>Vainilla</Text>
+                </View>
+              </Pressable>
+              <Pressable className='flex' onPress={() => SetDetailsDrink({...detailsDrink, syrup: 1})}>
+                <View className={`flex-1 rounded-xl bg-black m-2 align-items-center justify-center ${detailsDrink.syrup === 1 ? 'bg-black border border-white' : 'bg-white'} `}>
+                  <Text className={`text-2xl font-bold text-center p-5 text-black ${detailsDrink.syrup === 1 ? 'text-white' : 'text-black'} `}>Caramelo</Text>
+                </View>
+              </Pressable>
+              <Pressable className='flex' onPress={() => SetDetailsDrink({...detailsDrink, syrup: 2})}>
+                <View className={`flex-1 rounded-xl bg-black m-2 align-items-center justify-center ${detailsDrink.syrup === 2 ? 'bg-black border border-white' : 'bg-white'} `}>
+                  <Text className={`text-2xl font-bold text-center p-5 text-black ${detailsDrink.syrup === 2 ? 'text-white' : 'text-black'} `}>Crema irlandesa</Text>
+                </View>
+              </Pressable>
+              <Pressable className='flex' onPress={() => SetDetailsDrink({...detailsDrink, syrup: 3})}>
+                <View className={`flex-1 rounded-xl bg-black m-2 align-items-center justify-center ${detailsDrink.syrup === 3 ? 'bg-black border border-white' : 'bg-white'} `}>
+                  <Text className={`text-2xl font-bold text-center p-5 text-black ${detailsDrink.syrup === 3 ? 'text-white' : 'text-black'} `}>Natural</Text>
+                </View>
+              </Pressable>
+          </ScrollView>
+          {detailsDrink.milkType !== 3 ? (<Text className='text-center text-xl mx-5 '>Nota: los pedidos serán con leche {milkType[detailsDrink.milkType]} y sabor {syrup[detailsDrink.syrup]}.</Text>) : (<Text className='text-center text-xl'>Nota: los pedidos serán sin leche y sabor {syrup[detailsDrink.syrup]}.</Text>)}
           
           </>)
       default:
@@ -113,7 +188,6 @@ const dishDisplay = () => {
   const [details, SetDetails] = useState({
     name: item,
     type:type,
-    combo: isCombo,
     quantity: 1,
   })
 
@@ -122,21 +196,36 @@ const dishDisplay = () => {
     tomate: true,
     lechuga: true,
     pepinillos: true,
+    combo: isCombo,
   })
   const [detailsDrink, SetDetailsDrink] = useState({
     milkType: 0,
     sugar: 0,
     brownSugar: 0,
     syrup: 0,
-    frappeFlavor: 0
+    frappeFlavor: 0,
+    marshmallows: false,
+    whippedCream: false,
   })
   useEffect(() => {
     console.log(details.type)
   },[details.type])
+
+  useEffect(() => {
+    SetFinalDish(detailsFood)
+
+  }, [detailsFood])
+  useEffect(() => {
+    SetFinalDish(detailsDrink)
+  }, [detailsDrink])
+
+  
+
+  // necesitas una logica que implemente el finaldish junto con details y detailsfood o drink respecticamente
   return (
     <ScrollView className='flex-1 '>
       <Stack.Screen options={{title:item}}/>
-      <View className='flex-1 flex-col py-10 mb-5'>
+      <View className='flex-1 flex-col py-1 mb-5'>
       
       <View className='flex flex-row max-h-96'>
         <View className='flex flex-1 flex-col align-items-center content-center'>
@@ -183,6 +272,17 @@ const dishDisplay = () => {
 
         <View className=''>
            {getType()}
+           <View className='flex align-content-center justify-center'>
+          <Pressable onPress={ () => {console.log(FinalDish)}
+        // Logica del fetch para pedido de comida aqui  
+        }
+            
+            >
+            <View className='bg-black rounded-xl mt-5 mx-5'>
+              <Text className='text-2xl text-center text-white p-3'>Listo</Text>
+            </View>
+          </Pressable>
+       </View>
           {/* <View className='flex-row justify-between items-center content-center '>
 
             <Text className='text-lg font-bold ml-5 mt-5'>Cebolla</Text>
