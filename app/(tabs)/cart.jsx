@@ -21,7 +21,7 @@ const cart = () => {
     }]
   return (
     <ScrollView>
-        <View className='flex flex-col items-center'>
+        <View className='flex flex-col  items-center'>
         <View className='flex flex-row w-11/12 b rounded-lg my-2'>
                     <Text className='text-lg font-bold w-1/2 flex-1'>Artículo</Text>
                     <Text className='text-lg font-bold w-1/2 flex-1 text-center'>Cantidad</Text>
@@ -43,9 +43,12 @@ const cart = () => {
                     <Text className='text-lg font-bold w-1/2 flex-1 text-center'> </Text>
                     <Text className=' text-lg font-bold w-1/2 flex-1 text-right'>${cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0)}</Text>
             </View>
-            <View>
-                <Pressable className='bg-black w-11/12 rounded-lg my-2'>
-                    <Text className='text-lg text-white text-center font-bold'>Pagar</Text>
+            
+        </View>
+        <View>
+        <View className=' flex justify-content-center mx-5 ' >
+                <Pressable className='bg-black flex-1  rounded-lg my-2'>
+                    <Text className='text-2xl text-white text-center m-3 font-bold'>Pagar</Text>
                 </Pressable>
             </View>
         </View>

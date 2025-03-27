@@ -6,82 +6,17 @@ const menuDisplay = () => {
   const {data} = useLocalSearchParams()
 
   const food = [
-    {
-      id:1,
-      name:'Hamburguesa',
-      price:20,
-      type:'Food',
-      photo: require('../../assets/images/hamburguesa.jpeg')
-    },
-    {
-      id:2,
-      name:'Alfajor',
-      price:5,
-      type: 'Extras',
-      photo: require('../../assets/images/alfajor.jpg')
-    },
-    {
-      id:3,
-      name:'americano',
-      price:10,
-      type: 'Hot',
-      photo: require('../../assets/images/americano.jpg')
-    },
-    {
-      id:4,
-      name:'Frappe',
-      price:15,
-      type: 'Cold',
-      photo: require('../../assets/images/frappe.jpg')},
-    {
-      id:5,
-      name:'Ciabatta',
-      price:10,
-      type: 'Food',
-      photo: require('../../assets/images/ciabatta.jpg')
-    },
-    {
-      id:6,
-      name:'Poptart',
-      price:5,
-      type: 'Extras',
-      photo: require('../../assets/images/poptart.jpg')
-    },
-    {
-      id:7,
-      name:'brownie',
-      price:10,
-      type: 'Hot',
-      photo: require('../../assets/images/brownie.jpg')
-    },
-    {
-      id:8,
-      name:'chai',
-      price: 10,
-      type: 'Hot',
-      photo: require('../../assets/images/chai.jpeg')
-    },
-    {
-      id:9,
-      name:'chai',
-      price: 15,
-      type: 'Cold',
-      photo: require('../../assets/images/chai.jpeg')
-    },
-    {
-      id:10,
-      name:'americano',
-      price:10,
-      type: 'Cold',
-      photo: require('../../assets/images/americano.jpg')
-    },
-    {
-      id:11,
-      name:'matcha',
-      price:10,
-      type: 'Hot',
-      photo: require('../../assets/images/matcha.jpg')
-    }]
+    { id:1, name:'Hamburguesa', price:20, type:'Food', photo: require('../../assets/images/hamburguesa.jpeg') },
+    { id:2, name:'Alfajor', price:5, type:'Extras', photo: require('../../assets/images/alfajor.jpg') },
+    { id:3, name:'americano', price:10, type:'Hot', photo: require('../../assets/images/americano.jpg') },
+    { id:4, name:'Frappe', price:15, type:'Cold', photo: require('../../assets/images/frappe.jpg') },
+    { id:5, name:'Ciabatta', price:10, type:'Food', photo: require('../../assets/images/ciabatta.jpg') },
+    { id:6, name:'Poptart', price:5, type:'Extras', photo: require('../../assets/images/poptart.jpg') },
+    { id:7, name:'brownie', price:10, type:'Extras', photo: require('../../assets/images/brownie.jpg') },
+    { id:8, name:'chai', price:10, type:'Hot', photo: require('../../assets/images/chai.jpeg') },
+    { id:11, name:'matcha', price:10, type:'Hot', photo: require('../../assets/images/matcha.jpg') }
+  ]
+  
 
   return (
     <ScrollView>

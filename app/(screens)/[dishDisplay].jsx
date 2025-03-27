@@ -43,9 +43,9 @@ const dishDisplay = () => {
           whippedCream: 'Crema batida',
         }
         return(<View className='flex '>
-          {Object.entries(detailsDrink).map(([key, value])  => key === 'milkType' || key === 'syrup' || key === 'frappeFlavor' ? (<></>) :
+          {detailsDrink && Object.entries(detailsDrink).filter(([key]) => !['milkType', 'syrup', 'frappeFlavor'].includes(key)).map(([key, value])  =>
             (
-            <View className='mt-5' >
+            <View className='mt-5' key={key}>
               
               {key === 'sugar' || key === 'brownSugar' ? (
                 <View>
@@ -211,30 +211,24 @@ const dishDisplay = () => {
     console.log(details.type)
   },[details.type])
 
-  useEffect(() => {
-    SetFinalDish(detailsFood)
-
-  }, [detailsFood])
-  useEffect(() => {
-    SetFinalDish(detailsDrink)
-  }, [detailsDrink])
-
-  
-
-  // necesitas una logica que implemente el finaldish junto con details y detailsfood o drink respecticamente
+ useEffect(() => {
+  if(FinalDish === null){
+    return
+  }
+   console.log(FinalDish), [FinalDish]})
+ 
   return (
     <ScrollView className='flex-1 '>
       <Stack.Screen options={{title:item}}/>
       <View className='flex-1 flex-col py-1 mb-5'>
       
-      <View className='flex flex-row max-h-96'>
-        <View className='flex flex-1 flex-col align-items-center content-center'>
-          <Text className='text-2xl font-bold text-center ml-5 mt-5'>Descripción</Text>
-          <Text className='text-lg mt-5 font-bold mx-1 text-justify'>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor . </Text>
-        </View>
-        <View className='flex-1  justify-center align-items-center'>
-          <View className=' bg-black m-2 rounded-3xl h-1/2  '></View>
-          <Text className='text-center  text-xl'>$Precio</Text>
+      <View className='flex flex-col '>
+        <View className='flex justify-center'>
+          <View className='bg-black flex-1 h-52'></View>
+          <View className=''>
+            <Text className='text-lg my-5 font-bold mx-1 text-justify'>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor . </Text>
+
+          </View>
         </View>
 
       </View>
@@ -267,13 +261,26 @@ const dishDisplay = () => {
             </View>
           </View>
         </View>
-
-        <Text className='text-center text-2xl font-bold mt-5'>Especificaciones</Text>
+        {details.type !== 'Extras' ? (<Text className='text-center text-2xl font-bold mt-5'>Especificaciones</Text>) : (<></>)}
+        
 
         <View className=''>
            {getType()}
            <View className='flex align-content-center justify-center'>
-          <Pressable onPress={ () => {console.log(FinalDish)}
+          <Pressable onPress={ () => {
+           switch (details.type){
+              case 'Food':
+              SetFinalDish({...details, ...detailsFood})
+                break;
+              case 'Hot':
+              case 'Cold':
+              SetFinalDish({...details, ...detailsDrink})
+              break;
+              case 'Extras':
+              SetFinalDish(details)
+              break;
+           } 
+          }
         // Logica del fetch para pedido de comida aqui  
         }
             
@@ -283,24 +290,7 @@ const dishDisplay = () => {
             </View>
           </Pressable>
        </View>
-          {/* <View className='flex-row justify-between items-center content-center '>
-
-            <Text className='text-lg font-bold ml-5 mt-5'>Cebolla</Text>
-
-              <Pressable className='mt-5'>
-              <View className={`rounded-full ${!isCombo ? 'bg-black' : 'bg-white'}`} >
-                  <Text className={`text-xl p-3 px-5 ${!isCombo ? 'text-white' : 'text-black'}`} >No</Text>
-                </View>
-              </Pressable>
-              <View className='flex '>
-              <Pressable className='mt-5'>
-              <View className={`rounded-full ${isCombo ? 'bg-black' : 'bg-white'}`} >
-                  <Text className={`text-xl p-3 px-5 ${isCombo ? 'text-white' : 'text-black'}`} >Sí</Text>
-                </View>
-
-              </Pressable>
-            </View>
-          </View> */}
+        
         </View>
       </View>
     </ScrollView>

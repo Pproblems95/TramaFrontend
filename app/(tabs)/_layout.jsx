@@ -4,8 +4,8 @@ import { Tabs } from 'expo-router'
 
 const tabsLayout = () => {
   return (
-    <Tabs>
-        <Tabs.Screen name="home" options={{title:'Bienvenido', headerStyle:{backgroundColor:'black'}, headerTitleStyle:{
+    <Tabs screenOptions={{tabBarStyle:{backgroundColor:'black',}, tabBarInactiveTintColor:'white'}}>
+        <Tabs.Screen name="home" options={{title:'Trama Café ', headerStyle:{backgroundColor:'black'}, headerTitleStyle:{
             color:'white',
             fontSize:40,
             fontWeight:'bold'
